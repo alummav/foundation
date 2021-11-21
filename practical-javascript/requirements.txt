@@ -1,0 +1,6 @@
+Version 1
+[x] It should have a way to store todos
+[x] It should have a way to display todos
+[] It should have a way to add todos
+[] It should have a way to edit todos
+[] It should have a way to remove todos
