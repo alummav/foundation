@@ -35,6 +35,7 @@
       <input type="submit" value="Submit guess" class="guessSubmit">
     </div>
 
+      <!--(note how they are inside a <div> element, which is itself used to select all three later on for resetting, when we restart the game)-->
     <div class="resultParas">
       <p class="guesses"></p>
       <p class="lastResult"></p>
@@ -42,21 +43,38 @@
     </div>
 
     <script>
-      let randomNumber = Math.floor(Math.random() * 100) + 1;
+
+      /*Variables are basically names for values (such as numbers, or strings of text). You create a variable with the keyword let followed by a name for your variable.*/
+
+      let randomNumber = Math.floor(Math.random() * 100) + 1; /*The first variable — randomNumber — is assigned a random number between 1 and 100, calculated using a mathematical algorithm*/
+
+      console.log(randomNumber); //checks the random number on console.
+
+      /*Constants are also used to name values, but unlike variables, you can't change the value once set. In this case we are using constants to store references to parts of our user interface. The text inside some of these elements might change, but each constant always references the same HTML element that it was initialized with. You create a variable with the keyword const followed by a name for the constant.
+      You can assign a value to your variable or constant with an equals sign (=) followed by the value you want to give it.*/
+
+      //The first three constants are each made to store a reference to the results paragraphs in our HTML, and are used to insert values into the paragraphs later on in the code//
 
       const guesses = document.querySelector('.guesses');
       const lastResult = document.querySelector('.lastResult');
       const lowOrHi = document.querySelector('.lowOrHi');
 
+      //The next two constants store references to the form text input and submit button and are used to control submitting the guess later on.//
+
       const guessSubmit = document.querySelector('.guessSubmit');
       const guessField = document.querySelector('.guessField');
+
+      //the final two variables store a guess count of 1 (used to keep track of how many guesses the player has had), and a reference to a reset button//
 
       let guessCount = 1;
       let resetButton;
       guessField.focus();
 
-      function checkGuess() {
-        let userGuess = Number(guessField.value);
+      function checkGuess() 
+
+          //The first line declares a variable called userGuess and sets its value to the current value entered inside the text field. We also run this value through the built-in Number() constructor, just to make sure the value is definitely a number.//
+        {
+        let userGuess = Number(guessField.value); 
         if (guessCount === 1) {
           guesses.textContent = 'Previous guesses: ';
         }
@@ -69,7 +87,7 @@
           setGameOver();
         } 
 
-        else if (guessCount === 10) {
+        else if (guessCount === 5) {
           lastResult.textContent = '!!!GAME OVER!!!';
           lowOrHi.textContent = '';
           setGameOver();
@@ -122,6 +140,7 @@
         lastResult.style.backgroundColor = 'white';
 
         randomNumber = Math.floor(Math.random() * 100) + 1;
+        console.log(randomNumber);
       }
 
     </script>
