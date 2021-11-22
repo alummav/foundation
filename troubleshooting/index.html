@@ -10,6 +10,7 @@
         font-family: sans-serif;
       }
       body {
+        background-color: royalblue;
         width: 50%;
         max-width: 800px;
         min-width: 480px;
@@ -25,7 +26,7 @@
   <body>
       <h1>Number guessing game</h1>
 
-      <p>We have selected a random number between 1 and 100. See if you can guess it in 10 turns or less. We'll tell you if your guess was too high or too low.</p>
+      <p>We have selected a random number between 1 and 100. See if you can guess it in 5 turns or less. We'll tell you if your guess was too high or too low.</p>
 
 <div class="form">
   <label for="guessField">Enter a guess: </label><input type="text" id="guessField" class="guessField">
@@ -42,19 +43,19 @@
 
 <script>
   let randomNumber = Math.floor(Math.random()*100) + 1; 
-  /* error4: The instance that stores the random number that we want to guess at the start of the game.
-  Rounding a random decimal number between 0 and 1 down will always return 0, so adding 1 to it will always return 1.  We need to multiply the random number by 100 before we round it down. The following would give us a random number between 0 and 99: 
+  /* 
+  error4: The instance that stores the random number that we want to guess at the start of the game.
+  Rounding a random decimal number between 0 and 1 down will always return 0, so adding 1 to it will always return 1.  We need to multiply the random number by 100 before we round it down. 
+  The following would give us a random number between 0 and 99: 
   Math.floor(Math.random()*100);
   Hence us wanting to add 1, to give us a random number between 1 and 100:
-  Math.floor(Math.random()*100) + 1;*/
-
-
-  console.log(randomNumber);
+  Math.floor(Math.random()*100) + 1;
+  */
+  console.log(randomNumber); //checks the value of the random number
 
   const guesses = document.querySelector('.guesses');
   const lastResult = document.querySelector('.lastResult');
   const lowOrHi = document.querySelector('.lowOrHi'); // error2: we needed a class selector here, which begins with a dot (.), but the selector being passed into the querySelector() method in line 48 had no dot.('lowOrHi')
-  console.log(lowOrHi);
   const guessSubmit = document.querySelector('.guessSubmit');
   const guessField = document.querySelector('.guessField');
 
@@ -74,16 +75,23 @@
       lastResult.style.backgroundColor = 'green';
       lowOrHi.textContent = '';
       setGameOver();
-    } else if(guessCount === 10) {
+    } 
+
+    else if(guessCount === 5) {
       lastResult.textContent = '!!!GAME OVER!!!';
+      lowOrHi.textContent = ''; //error5: abscence of line 82 caused the last turn by the player to display the 2nd text result of the 4th game// 
       setGameOver();
-    } else {
+    } 
+
+    else {
       lastResult.textContent = 'Wrong!';
       lastResult.style.backgroundColor = 'red';
+
       if(userGuess < randomNumber) {
-        lowOrHi.textContent = 'Last guess was too low!';
-      } else if(userGuess > randomNumber) {
-        lowOrHi.textContent = 'Last guess was too high!';
+        lowOrHi.textContent = 'Last guess low!';
+      } 
+      else if(userGuess > randomNumber) {
+        lowOrHi.textContent = 'Last guess high!';
       }
     }
 
@@ -118,8 +126,8 @@
 
     lastResult.style.backgroundColor = 'white';
 
-    randomNumber = Math.floor(Math.random()) + 1; //the instance that generates the random number before each subsequent game
-    console.log(randomNumber);
+    randomNumber = Math.floor(Math.random()*100) + 1; //the instance that generates the random number before each subsequent game
+    console.log(randomNumber); //shows the new random number generated on the console
 
   }
 </script>
